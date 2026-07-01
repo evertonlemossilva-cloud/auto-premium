@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPremium | Oficina & Estética Automotiva</title>
+    <style>
+        /* Configurações Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --cor-principal: #e50914; /* Vermelho esportivo */
+            --cor-fundo-escuro: #141414;
+            --cor-fundo-card: #1f1f1f;
+            --cor-texto-claro: #ffffff;
+            --cor-texto-cinza: #aaaaaa;
+        }
+
+        body {
+            background-color: var(--cor-fundo-escuro);
+            color: var(--cor-texto-claro);
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Cabeçalho / Menu */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(20, 20, 20, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #2e2e2e;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--cor-principal);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cor-principal);
+        }
+
+        .btn-contato {
+            background-color: var(--cor-principal);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-contato:hover {
+            background-color: #b80710;
+            transform: scale(1.05);
+        }
+
+        /* Banner Principal */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 8%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            max-width: 600px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--cor-principal);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--cor-texto-cinza);
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        /* Seções Gerais */
+        section {
+            padding: 80px 8%;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .titulo-secao::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--cor-principal);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Grid de Serviços */
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .servico-card {
+            background-color: var(--cor-fundo-card);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #2e2e2e;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .servico-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cor-principal);
+        }
+
+        .servico-card .icone {
+            font-size: 40px;
+            color: var(--cor-principal);
+            margin-bottom: 20px;
+        }
+
+        .servico-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .servico-card p {
+            color: var(--cor-texto-cinza);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Sobre Nós */
+        .sobre-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .sobre-texto {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .sobre-texto p {
+            color: var(--cor-texto-cinza);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .sobre-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .sobre-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Contato */
+        .contato-container {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contato-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contato-info h3 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .contato-info p {
+            color: var(--cor-texto-cinza);
+            margin-bottom: 15px;
+        }
+
+        .contato-form {
+            flex: 1.5;
+            min-width: 300px;
+            background-color: var(--cor-fundo-card);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #2e2e2e;
+        }
+
+        .form-grupo {
+            margin-bottom: 20px;
+        }
+
+        .form-grupo label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--cor-texto-cinza);
+        }
+
+        .form-grupo input, .form-grupo textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #141414;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-grupo input:focus, .form-grupo textarea:focus {
+            border-color: var(--cor-principal);
+        }
+
+        .btn-enviar {
+            background-color: var(--cor-principal);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .btn-enviar:hover {
+            background-color: #b80710;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #0a0a0a;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            color: var(--cor-texto-cinza);
+            border-top: 1px solid #1f1f1f;
+        }
+
+        /* Responsividade Celular */
+        @media (max-width: 768px) {
+            header nav {
+                display: none; /* Em um cenário real, você adicionaria um menu hambúrguer aqui */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Auto<span>Premium</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="#contato">Modelos</a></li>
+        </nav>
+        <a href="#contato" class="btn-contato">Agendar Visita</a>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Cuidados de Alta Performance para o Seu <span>Veículo</span></h1>
+        <p>Mecânica especializada, funilaria de precisão e estética automotiva premium. Devolva o brilho e a potência que seu carro merece.</p>
+        <a href="#servicos" class="btn-contato">Conhecer Serviços</a>
+    </section>
+
+    <section id="servicos">
+        <h2 class="titulo-secao">Nossos Serviços</h2>
+        <div class="servicos-grid">
+            <div class="servico-card">
+                <div class="icone">⚙️</div>
+                <h3>Mecânica Geral</h3>
+                <p>Diagnóstico computadorizado, suspensão, freios, injeção eletrônica e manutenção preventiva completa para motores nacionais e importados.</p>
+            </div>
+            <div class="servico-card">
+                <div class="icone">✨</div>
+                <h3>Estética Automotiva</h3>
+                <p>Vitrificação de pintura, polimento técnico comercial, higienização interna profunda e detalhamento de motor.</p>
+            </div>
+            <div class="servico-card">
+                <div class="icone">🎨</div>
+                <h3>Funilaria & Pintura</h3>
+                <p>Reparos de pequenos arranhões a grandes colisões, utilizando tintas de alta tecnologia e cabine de pintura pressurizada.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" style="background-color: #1a1a1a;">
+        <h2 class="titulo-secao">Quem Somos</h2>
+        <div class="sobre-container">
+            <div class="sobre-texto">
+                <p>Com mais de 10 anos de experiência no mercado de alto padrão, a <strong>AutoPremium</strong> nasceu da paixão por motores e da necessidade de um serviço transparente e milimetricamente executado.</p>
+                <p>Nossa oficina conta com equipamentos de última geração e uma equipe técnica certificada pelas maiores montadoras do mundo. Cuidamos do seu carro como se fosse nosso.</p>
+            </div>
+            <div class="sobre-img">
+                <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&q=80&w=800" alt="Equipe trabalhando na oficina">
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2 class="titulo-secao">Fale Conosco</h2>
+        <div class="contato-container">
+            <div class="contato-info">
+                <h3>Agende seu Horário</h3>
+                <p>Preencha o formulário ao lado ou entre em contato pelos nossos canais diretos de atendimento.</p>
+                <p><strong>📍 Endereço:</strong> Av. Automotiva, 1000 - Centro, Cidade/UF</p>
+                <p><strong>📞 Telefone:</strong> (11) 4002-8922</p>
+                <p><strong>✉️ E-mail:</strong> contato@autopremium.com.br</p>
+                <p><strong>⏰ Horário:</strong> Seg a Sex: 8h às 18h | Sáb: 8h às 12h</p>
+            </div>
+            <div class="contato-form">
+                <form action="#" method="POST">
+                    <div class="form-grupo">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" required placeholder="Ex: João Silva">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="whatsapp">WhatsApp / Telefone</label>
+                        <input type="tel" id="whatsapp" required placeholder="Ex: (11) 99999-9999">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="mensagem">Mensagem / Modelo do Carro</label>
+                        <textarea id="mensagem" rows="4" required placeholder="Descreva brevemente o que seu carro precisa..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-enviar">Solicitar Orçamento</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 AutoPremium LTDA. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html
